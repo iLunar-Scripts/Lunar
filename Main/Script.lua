@@ -1,4 +1,5 @@
 local UserInputService = game:GetService("UserInputService")
+local Players = game:GetService("Players")
 
 local function DetectDevice()
     if UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled then
@@ -11,11 +12,17 @@ local function DetectDevice()
 end
 
 local device = DetectDevice()
+local localPlayer = Players.LocalPlayer
+local placeId = game.PlaceId
 
 if device == "PC" then
-    game.Players.LocalPlayer:Kick("Wait for release in 30/06/2025")
+    localPlayer:Kick("Wait for release in 30/06/2025")
 elseif device == "Mobile" then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/iLunar-Scripts/Lunar/refs/heads/main/Versions/LastMobileTPS.lua"))()
+    if placeId == 13664698400 then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/iLunar-Scripts/Lunar/refs/heads/main/Versions/TheClassicSoccer.lua"))()
+    else
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/iLunar-Scripts/Lunar/refs/heads/main/Versions/LastMobileTPS.lua"))()
+    end
 else
-    game.Players.LocalPlayer:Kick("Unknown Device")
+    localPlayer:Kick("Unknown Device")
 end
